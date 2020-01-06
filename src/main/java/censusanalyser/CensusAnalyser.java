@@ -13,12 +13,7 @@ import java.util.stream.StreamSupport;
 public class CensusAnalyser {
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));){
-            //  Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
-            CsvToBeanBuilder<IndiaCensusCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-            csvToBeanBuilder.withType(IndiaCensusCSV.class);
-            csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
-            CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
-            Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();;
+            Iterator<IndiaCensusCSV> censusCSVIterator = getCSVFileIterator(reader,IndiaCensusCSV.class);
             Iterable<IndiaCensusCSV>csvIterable = () ->censusCSVIterator;
             int numOfEnteries= (int) StreamSupport.stream(csvIterable.spliterator(),true).count();
             System.out.println(numOfEnteries);
@@ -39,12 +34,8 @@ public class CensusAnalyser {
 
     public int loadIndiaStateCodeData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-            CsvToBeanBuilder<CSVStates> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-            csvToBeanBuilder.withType(CSVStates.class);
-            csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
-            CsvToBean<CSVStates> csvToBean = csvToBeanBuilder.build();
-            Iterator<CSVStates> censusCSVIterator = csvToBean.iterator();
-            Iterable<CSVStates> csvIterable = () -> censusCSVIterator;
+            Iterator<CSVStatesCode> censusCSVIterator = getCSVFileIterator(reader,CSVStatesCode.class);
+            Iterable<CSVStatesCode> csvIterable = () -> censusCSVIterator;
             int numOfEnteries = (int) StreamSupport.stream(csvIterable.spliterator(), true).count();
             System.out.println(numOfEnteries);
             return numOfEnteries;
@@ -60,4 +51,13 @@ public class CensusAnalyser {
         }
 
     }
+
+    private <E> Iterator<E> getCSVFileIterator(Reader reader, Class<E> CSVClass) {
+        CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+        csvToBeanBuilder.withType(CSVClass);
+        csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
+        CsvToBean<E> csvToBean = csvToBeanBuilder.build();
+        return csvToBean.iterator();
+    }
+
 }
