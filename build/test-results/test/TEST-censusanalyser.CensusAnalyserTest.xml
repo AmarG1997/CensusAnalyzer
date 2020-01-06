@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="censusanalyser.CensusAnalyserTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-01-04T11:58:45" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.212">
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-04T13:38:13" hostname="admin1-HP-EliteBook-Folio-9480m" time="0.011">
   <properties/>
-  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.206"/>
-  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.006"/>
-  <system-out><![CDATA[29
+  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.011"/>
+  <system-out><![CDATA[censusanalyser.CensusAnalyserException: File Not Found
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
