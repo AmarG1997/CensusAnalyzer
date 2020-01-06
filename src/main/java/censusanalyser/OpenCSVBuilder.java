@@ -6,10 +6,9 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import java.io.Reader;
 import java.util.Iterator;
 
-public class OpenCSVBuilder {
+public class OpenCSVBuilder<E> implements ICSVBuilder {
 
-
-    public <E> Iterator<E> getCSVFileIterator(Reader reader, Class<E> CSVClass) throws CensusAnalyserException {
+    public Iterator<E> getCSVFileIterator(Reader reader, Class CSVClass) throws CensusAnalyserException {
         try {
             CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
             csvToBeanBuilder.withType(CSVClass);
