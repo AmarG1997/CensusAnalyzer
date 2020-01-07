@@ -2,6 +2,7 @@ package censusanalyser;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import csvbuilderException.CsvBuilderException;
 
 import java.io.Reader;
 import java.util.Iterator;
@@ -17,7 +18,7 @@ public class OpenCSVBuilder<E> implements ICSVBuilder {
             return csvToBean.iterator();
         }catch (IllegalStateException e) {
             throw new CsvBuilderException(e.getMessage(),
-                                            CsvBuilderException.ExceptionType.UNABLE_TO_PARSE);
+                                            csvbuilderException.CsvBuilderException.ExceptionType.UNABLE_TO_PARSE);
         }
     }
 
