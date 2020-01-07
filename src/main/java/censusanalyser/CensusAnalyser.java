@@ -1,6 +1,8 @@
 package censusanalyser;
 
-import csvbuilderException.CsvBuilderException;
+import csvBuilder.CSVBuilderFactory;
+import csvBuilder.CsvBuilderException;
+import csvBuilder.ICSVBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -26,8 +28,6 @@ public class CensusAnalyser {
 
 
         }
-
-
     }
 
     public int loadIndiaStateCodeData(String csvFilePath) throws CensusAnalyserException {
@@ -48,7 +48,6 @@ public class CensusAnalyser {
         }
 
     }
-
 
     private <E> int getCount(Iterator<E> censusCSVIterator) {
         Iterable <E>csvIterable = () ->censusCSVIterator;
