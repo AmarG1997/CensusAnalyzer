@@ -18,7 +18,7 @@ public class CSVStatesCode {
 
     @Override
     public String toString() {
-        return "CSVStatesCode{" +
+        return "{" +
                 "SrNo=" + SrNo +
                 ", StateName='" + StateName + '\'' +
                 ", TIN=" + TIN +
