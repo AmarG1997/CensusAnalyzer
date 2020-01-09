@@ -5,6 +5,7 @@ import csvBuilder.CsvBuilderException;
 import csvBuilder.ICSVBuilder;
 import org.json.JSONArray;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -17,8 +18,8 @@ public class CensusAnalyser {
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator<IndiaCensusCSV> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, IndiaCensusCSV.class);
-            return this.getCount(censusCSVIterator);
+            List<IndiaCensusCSV> censusCSVList = csvBuilder.getCSVFileList(reader, IndiaCensusCSV.class);
+            return censusCSVList.size();
 
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
@@ -71,23 +72,25 @@ public class CensusAnalyser {
         return jsonArray;
     }
 
-        public JSONArray getSortIndiaStateCode(String csvFilePath) throws IOException, CsvBuilderException {
-            Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
-            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator<CSVStatesCode> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, CSVStatesCode.class);
-            List<CSVStatesCode> list = new ArrayList<>();
-            while (censusCSVIterator.hasNext()) {
-                list.add(censusCSVIterator.next());
-            }
-            List<CSVStatesCode> listSorted = list.stream().sorted(Comparator.comparing(CSVStatesCode::getStateCode)).collect(Collectors.toList());
+        public JSONArray getSortIndiaStateCode(String csvFilePath) throws IOException {
+            BufferedReader reader1 = Files.newBufferedReader(Paths.get(csvFilePath));
             JSONArray json = new JSONArray();
-            for (int i=0;i<listSorted.size();i++)
-            {
-               json.put(listSorted.get(i));
+            Map<String,List<String>> map= new TreeMap<>();
+            String  line;
+            while ((line = reader1.readLine())!=null){
+                String fields = line.split(",")[3];
+                List<String> list = map.get(fields);
+                if (list == null){
+                    list=new LinkedList<>();
+                    map.put(fields,list);
+                }
+                list.add(line);
+                json.put(map.get(fields));
             }
-            System.out.println("list sorted--->"+listSorted);
+            System.out.println("list sorted--->"+json);
             return json;
         }
+
     }
 
 

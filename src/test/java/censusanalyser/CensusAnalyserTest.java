@@ -7,8 +7,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 public class CensusAnalyserTest {
 
@@ -157,15 +155,15 @@ public class CensusAnalyserTest {
     public void givenIndiaStateCodeFile_sortedList_atFirstPosition_isSortedData() throws IOException, CsvBuilderException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         JSONArray list = censusAnalyser.getSortIndiaStateCode(INDIA_STATE_CODE);
-        Assert.assertEquals(true,list.get(0).toString().contains("Andhra Pradesh New"));
+        Assert.assertEquals(true,list.get(1).toString().contains("Andaman and Nicobar"));
 
     }
 
     @Test
     public void givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData() throws IOException, CsvBuilderException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
-        JSONArray list = censusAnalyser.getSortIndiaStateCode(INDIA_STATE_CODE);
-        Assert.assertEquals(true,list.get(36).toString().contains("West Bengal"));
+         JSONArray list = censusAnalyser.getSortIndiaStateCode(INDIA_STATE_CODE);
+        Assert.assertEquals(true,list.get(37).toString().contains("West Bengal"));
 
     }
 
