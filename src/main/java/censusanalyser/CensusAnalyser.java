@@ -54,14 +54,22 @@ public class CensusAnalyser {
         return numOfEnteries;
     }
 
-    public String getSortIndiaStateCensusData() {
+    public String getSortIndiaStateCensusData() throws CensusAnalyserException {
+        if (censusCSVList.size()==0 || censusCSVList == null) {
+            throw new CensusAnalyserException("Null pointer Exception",
+                    CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
+        }
         List<IndiaCensusCSV> list1 = censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCSV::getState)).collect(Collectors.toList());
         String sortedData = new Gson().toJson(list1);
         System.out.println(sortedData);
         return sortedData;
     }
 
-    public String getSortIndiaStateCode() {
+    public String getSortIndiaStateCode() throws CensusAnalyserException {
+        if (censusStateCodeCSVList.size()==0){
+            throw new CensusAnalyserException("Null pointer Exception",
+                    CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
+        }
         List<CSVStatesCode> list1 = censusStateCodeCSVList.stream().sorted(Comparator.comparing(CSVStatesCode::getStateCode)).collect(Collectors.toList());
         String sortedData = new Gson().toJson(list1);
         System.out.println(sortedData);

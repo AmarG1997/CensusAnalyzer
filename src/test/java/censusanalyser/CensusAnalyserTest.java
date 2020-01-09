@@ -1,12 +1,10 @@
 package censusanalyser;
 
 import com.google.gson.Gson;
-import csvBuilder.CsvBuilderException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.io.IOException;
 
 public class CensusAnalyserTest {
 
@@ -137,7 +135,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusFile_sortedList_atFirstPosition_isSortedData() throws IOException, CsvBuilderException, CensusAnalyserException {
+    public void givenIndiaCensusFile_sortedList_atFirstPosition_isSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         String list = censusAnalyser.getSortIndiaStateCensusData();
@@ -147,7 +145,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusFile_sortedList_atLastPosition_isSortedData() throws IOException, CsvBuilderException, CensusAnalyserException {
+    public void givenIndiaCensusFile_sortedList_atLastPosition_isSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         String list = censusAnalyser.getSortIndiaStateCensusData();
@@ -156,7 +154,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaStateCodeFile_sortedList_atFirstPosition_isSortedData() throws IOException, CsvBuilderException, CensusAnalyserException {
+    public void givenIndiaStateCodeFile_sortedList_atFirstPosition_isSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaStateCodeData(INDIA_STATE_CODE);
         String list = censusAnalyser.getSortIndiaStateCode();
@@ -167,7 +165,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData() throws IOException, CsvBuilderException, CensusAnalyserException {
+    public void givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaStateCodeData(INDIA_STATE_CODE);
         String list = censusAnalyser.getSortIndiaStateCode();
@@ -176,7 +174,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_shouldReturnSortedData() throws IOException, CsvBuilderException, CensusAnalyserException {
+    public void givenIndiaCensusData_shouldReturnSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         String sortDataByStateName= censusAnalyser.getSortIndiaStateCensusData();
