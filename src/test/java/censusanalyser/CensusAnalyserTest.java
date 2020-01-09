@@ -141,7 +141,7 @@ public class CensusAnalyserTest {
     @Test
     public void givenIndiaCensusFile_sortedList_atFirstPosition_isSortedData() throws IOException, CsvBuilderException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
-        List list = censusAnalyser.getSortIndiaStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+        JSONArray list = censusAnalyser.getSortIndiaStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         Assert.assertEquals(true,list.get(0).toString().contains("Andhra Pradesh"));
 
     }
@@ -149,10 +149,8 @@ public class CensusAnalyserTest {
     @Test
     public void givenIndiaCensusFile_sortedList_atLastPosition_isSortedData() throws IOException, CsvBuilderException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
-        List list = censusAnalyser.getSortIndiaStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+        JSONArray list = censusAnalyser.getSortIndiaStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         Assert.assertEquals(true,list.get(28).toString().contains("West Bengal"));
-        System.out.println(list.get(5));
-
     }
 
     @Test

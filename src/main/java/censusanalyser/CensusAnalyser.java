@@ -53,7 +53,7 @@ public class CensusAnalyser {
         return numOfEnteries;
     }
 
-    public List<IndiaCensusCSV> getSortIndiaStateCensusData(String csvFilePath) throws IOException, CsvBuilderException {
+    public JSONArray getSortIndiaStateCensusData(String csvFilePath) throws IOException, CsvBuilderException {
         Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
         ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
         Iterator<IndiaCensusCSV> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, IndiaCensusCSV.class);
@@ -61,9 +61,14 @@ public class CensusAnalyser {
         while (censusCSVIterator.hasNext()){
             list.add(censusCSVIterator.next());
         }
-        Collections.sort(list,new LoadObjectComparatorEx());
-        System.out.println(list);
-        return list;
+        List<IndiaCensusCSV> list1 = list.stream().sorted(Comparator.comparing(IndiaCensusCSV::getState)).collect(Collectors.toList());
+        JSONArray jsonArray = new JSONArray();
+        for (int i=0;i<list1.size();i++)
+        {
+            jsonArray.put(list1.get(i));
+        }
+        System.out.println("list sorted--->"+list1);
+        return jsonArray;
     }
 
         public JSONArray getSortIndiaStateCode(String csvFilePath) throws IOException, CsvBuilderException {
@@ -82,8 +87,6 @@ public class CensusAnalyser {
             }
             System.out.println("list sorted--->"+listSorted);
             return json;
-
-
         }
     }
 
