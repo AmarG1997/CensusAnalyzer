@@ -1,12 +1,16 @@
 package censusanalyser;
 
-import csvBuilder.*;
+import csvBuilder.CSVBuilderFactory;
+import csvBuilder.CsvBuilderException;
+import csvBuilder.ICSVBuilder;
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
@@ -62,6 +66,25 @@ public class CensusAnalyser {
         return list;
     }
 
+        public JSONArray getSortIndiaStateCode(String csvFilePath) throws IOException, CsvBuilderException {
+            Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            Iterator<CSVStatesCode> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, CSVStatesCode.class);
+            List<CSVStatesCode> list = new ArrayList<>();
+            while (censusCSVIterator.hasNext()) {
+                list.add(censusCSVIterator.next());
+            }
+            List<CSVStatesCode> listSorted = list.stream().sorted(Comparator.comparing(CSVStatesCode::getStateCode)).collect(Collectors.toList());
+            JSONArray json = new JSONArray();
+            for (int i=0;i<listSorted.size();i++)
+            {
+               json.put(listSorted.get(i));
+            }
+            System.out.println("list sorted--->"+listSorted);
+            return json;
 
-}
+
+        }
+    }
+
 

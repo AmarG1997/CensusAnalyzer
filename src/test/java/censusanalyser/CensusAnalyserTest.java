@@ -1,11 +1,13 @@
 package censusanalyser;
 
 import csvBuilder.CsvBuilderException;
+import org.json.JSONArray;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 public class CensusAnalyserTest {
@@ -137,7 +139,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusFile_sortedList_atFirstPositionSortedData() throws IOException, CsvBuilderException {
+    public void givenIndiaCensusFile_sortedList_atFirstPosition_isSortedData() throws IOException, CsvBuilderException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         List list = censusAnalyser.getSortIndiaStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         Assert.assertEquals(true,list.get(0).toString().contains("Andhra Pradesh"));
@@ -145,12 +147,28 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusFile_sortedList_atLastPositionSortedData() throws IOException, CsvBuilderException {
+    public void givenIndiaCensusFile_sortedList_atLastPosition_isSortedData() throws IOException, CsvBuilderException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         List list = censusAnalyser.getSortIndiaStateCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         Assert.assertEquals(true,list.get(28).toString().contains("West Bengal"));
+        System.out.println(list.get(5));
 
     }
 
+    @Test
+    public void givenIndiaStateCodeFile_sortedList_atFirstPosition_isSortedData() throws IOException, CsvBuilderException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        JSONArray list = censusAnalyser.getSortIndiaStateCode(INDIA_STATE_CODE);
+        Assert.assertEquals(true,list.get(0).toString().contains("Andhra Pradesh New"));
+
+    }
+
+    @Test
+    public void givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData() throws IOException, CsvBuilderException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        JSONArray list = censusAnalyser.getSortIndiaStateCode(INDIA_STATE_CODE);
+        Assert.assertEquals(true,list.get(36).toString().contains("West Bengal"));
+
+    }
 
 }
