@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c80ee4f-b49f-4760-94c9-81f9af2ef2aa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/censusanalyser/CensusAnalyser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/censusanalyser/CensusAnalyser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/censusanalyser/CensusAnalyserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/censusanalyser/CensusAnalyserTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java" afterDir="false" />
     </list>
@@ -44,11 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="153" column="60" selection-start-line="153" selection-start-column="60" selection-end-line="153" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -101,8 +95,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="62" column="135" selection-start-line="62" selection-start-column="135" selection-end-line="62" selection-end-column="135" />
+            <state relative-caret-position="647">
+              <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -377,15 +371,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CensusAnalyserTest - 2020.01.09 at 16h 21m 03s.xml">
-      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CensusAnalyserTest_givenIndiaCensusData_shouldReturnSortedData - 2020.01.09 at 16h 34m 52s.xml">
-      <configuration name="CensusAnalyserTest.givenIndiaCensusData_shouldReturnSortedData" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CensusAnalyserTest_givenIndiaCensusData_shouldReturnSortedData - 2020.01.09 at 16h 47m 57s.xml">
-      <configuration name="CensusAnalyserTest.givenIndiaCensusData_shouldReturnSortedData" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CensusAnalyserTest_givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData - 2020.01.09 at 16h 48m 01s.xml">
       <configuration name="CensusAnalyserTest.givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData" configurationId="JUnit" />
     </history-entry>
@@ -407,6 +392,15 @@
     <history-entry file="CensusAnalyserTest - 2020.01.09 at 16h 49m 28s.xml">
       <configuration name="CensusAnalyserTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.09 at 17h 42m 10s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.09 at 17h 42m 41s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.09 at 17h 44m 43s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -423,13 +417,13 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32899022" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32899022" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32736155" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32736155" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39739415" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3306189" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3306189" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="11" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -607,18 +601,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="153" column="60" selection-start-line="153" selection-start-column="60" selection-end-line="153" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="135" selection-start-line="62" selection-start-column="135" selection-end-line="62" selection-end-column="135" />
+        <state relative-caret-position="647">
+          <caret line="69" column="36" selection-start-line="69" selection-start-column="36" selection-end-line="69" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

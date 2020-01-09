@@ -55,11 +55,7 @@ public class CensusAnalyser {
     public String getSortIndiaStateCensusData(String csvFilePath) throws IOException, CsvBuilderException {
         Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
         ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-        Iterator<IndiaCensusCSV> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, IndiaCensusCSV.class);
-        List<IndiaCensusCSV> list = new ArrayList<>();
-        while (censusCSVIterator.hasNext()){
-            list.add(censusCSVIterator.next());
-        }
+        List<IndiaCensusCSV> list = csvBuilder.getCSVFileList(reader, IndiaCensusCSV.class);
         List<IndiaCensusCSV> list1 = list.stream().sorted(Comparator.comparing(IndiaCensusCSV::getState)).collect(Collectors.toList());
         String sortedData = new Gson().toJson(list1);
         System.out.println(sortedData);
@@ -71,11 +67,7 @@ public class CensusAnalyser {
         public String getSortIndiaStateCode(String csvFilePath) throws IOException, CsvBuilderException {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator<CSVStatesCode> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, CSVStatesCode.class);
-            List<CSVStatesCode> list = new ArrayList<>();
-            while (censusCSVIterator.hasNext()){
-                list.add(censusCSVIterator.next());
-            }
+            List<CSVStatesCode> list = csvBuilder.getCSVFileList(reader, CSVStatesCode.class);
             List<CSVStatesCode> list1 = list.stream().sorted(Comparator.comparing(CSVStatesCode::getStateCode)).collect(Collectors.toList());
             String sortedData = new Gson().toJson(list1);
             System.out.println(sortedData);
