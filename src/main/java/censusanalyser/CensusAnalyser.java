@@ -13,12 +13,22 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
-    List<IndiaCensusCSV> censusCSVList = null;
+    List<IndiaCensusCsvDAO> censusCSVList = null;
+
     List<CSVStatesCode> censusStateCodeCSVList = null;
+
+    public CensusAnalyser() {
+        this.censusCSVList = new ArrayList<IndiaCensusCsvDAO>();
+    }
+
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            censusCSVList = csvBuilder.getCSVFileList(reader, IndiaCensusCSV.class);
+            Iterator <IndiaCensusCSV>csvFileIterator = csvBuilder.getCSVFileIterator(reader, IndiaCensusCSV.class);
+            while (csvFileIterator.hasNext())
+            {
+                this.censusCSVList.add(new IndiaCensusCsvDAO(csvFileIterator.next()));
+            }
             return censusCSVList.size();
 
         } catch (IOException e) {
@@ -59,8 +69,9 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Null pointer Exception",
                     CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
         }
-        List<IndiaCensusCSV> list1 = censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCSV::getState)).collect(Collectors.toList());
-        String sortedData = new Gson().toJson(list1);
+
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getStateDAO)).collect(Collectors.toList());
+        String sortedData = new Gson().toJson(this.censusCSVList);
         System.out.println(sortedData);
         return sortedData;
     }
@@ -70,8 +81,8 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Null pointer Exception",
                     CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
         }
-        List<CSVStatesCode> list1 = censusStateCodeCSVList.stream().sorted(Comparator.comparing(CSVStatesCode::getStateCode)).collect(Collectors.toList());
-        String sortedData = new Gson().toJson(list1);
+        censusStateCodeCSVList = censusStateCodeCSVList.stream().sorted(Comparator.comparing(CSVStatesCode::getStateCode)).collect(Collectors.toList());
+        String sortedData = new Gson().toJson(censusStateCodeCSVList);
         System.out.println(sortedData);
         return sortedData;
         }
