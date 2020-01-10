@@ -185,7 +185,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianCensusData_shouldReturnMostPopulationData() throws CensusAnalyserException {
+    public void givenIndianCensusData_shouldReturnMostPopulationState() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         String mostPopulationState = censusAnalyser.getMostPopulationState();
@@ -193,4 +193,35 @@ public class CensusAnalyserTest {
         Assert.assertEquals("Uttar Pradesh",indiaCensusCSVS[0].state);
         System.out.println(indiaCensusCSVS[0]);
     }
+
+    @Test
+    public void givenIndianCensusData_shouldReturnLowPopulationState() throws CensusAnalyserException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+        String mostPopulationState = censusAnalyser.getMostPopulationState();
+        IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(mostPopulationState,IndiaCensusCSV[].class);
+        Assert.assertEquals("Sikkim",indiaCensusCSVS[28].state);
+        System.out.println(indiaCensusCSVS[28]);
+    }
+
+    @Test
+    public void givenIndianCensusData_shouldReturnMostPopulationDensityState() throws CensusAnalyserException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+        String mostPopulationDensityState = censusAnalyser.getMostDensityPopulationState();
+        IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(mostPopulationDensityState,IndiaCensusCSV[].class);
+        Assert.assertEquals("Bihar",indiaCensusCSVS[0].state);
+        System.out.println(indiaCensusCSVS[0]);
+    }
+
+    @Test
+    public void givenIndianCensusData_shouldReturnLowestPopulationDensityState() throws CensusAnalyserException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+        String mostPopulationState = censusAnalyser.getMostDensityPopulationState();
+        IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(mostPopulationState,IndiaCensusCSV[].class);
+        Assert.assertEquals("Bihar",indiaCensusCSVS[0].state);
+        System.out.println(indiaCensusCSVS[0]);
+    }
+
 }

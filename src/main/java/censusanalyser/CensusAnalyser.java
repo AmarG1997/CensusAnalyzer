@@ -97,6 +97,12 @@ public class CensusAnalyser {
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
+
+    public String getMostDensityPopulationState() {
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getDensityPerSqKm).reversed()).collect(Collectors.toList());
+        String sortedData = new Gson().toJson(this.censusCSVList);
+        return sortedData;
+    }
 }
 
 

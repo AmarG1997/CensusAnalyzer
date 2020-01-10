@@ -18,4 +18,8 @@ public class IndiaCensusCsvDAO {
     public int getPopulation() {
         return population;
     }
+
+    public int getDensityPerSqKm() {
+        return densityPerSqKm;
+    }
 }
