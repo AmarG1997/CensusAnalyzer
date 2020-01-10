@@ -205,7 +205,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianCensusData_shouldReturnMostPopulationDensityState() throws CensusAnalyserException {
+    public void givenIndianCensusData_shouldReturnLowestPopulationDensityState() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         String mostPopulationDensityState = censusAnalyser.getMostDensityPopulationState();
@@ -215,7 +215,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianCensusData_shouldReturnLowestPopulationDensityState() throws CensusAnalyserException {
+    public void givenIndianCensusData_shouldReturnMostPopulationDensityState() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
         String mostPopulationDensityState = censusAnalyser.getMostDensityPopulationState();
