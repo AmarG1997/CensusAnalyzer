@@ -17,9 +17,12 @@ public class CensusAnalyser {
 
     List<IndiaStateCodeDAO> censusStateCodeCSVList = null;
 
+    List<USCensusDAO> censusDAOS = null;
+
     public CensusAnalyser() {
         this.censusCSVList = new ArrayList<IndiaCensusCsvDAO>();
         this.censusStateCodeCSVList = new ArrayList<IndiaStateCodeDAO>();
+        this.censusDAOS = new ArrayList<>();
     }
 
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
@@ -63,6 +66,25 @@ public class CensusAnalyser {
         }
     }
 
+    public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            Iterator <USCensus>USCensusIterator = csvBuilder.getCSVFileIterator(reader, USCensus.class);
+            while (USCensusIterator.hasNext())
+            {
+                this.censusDAOS.add(new USCensusDAO(USCensusIterator.next()));
+            }
+            return censusDAOS.size();
+        } catch (IOException e) {
+            throw new CensusAnalyserException(e.getMessage(),
+                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        } catch (RuntimeException e) {
+            throw new CensusAnalyserException(e.getMessage(),
+                    CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
+        } catch (CsvBuilderException e) {
+            throw new CensusAnalyserException(e.getMessage(), e.type.name());
+        }
+    }
     private <E> int getCount(Iterator<E> censusCSVIterator) {
         Iterable<E> csvIterable = () -> censusCSVIterator;
         int numOfEnteries = (int) StreamSupport.stream(csvIterable.spliterator(), true).count();
