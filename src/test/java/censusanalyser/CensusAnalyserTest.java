@@ -218,8 +218,8 @@ public class CensusAnalyserTest {
     public void givenIndianCensusData_shouldReturnLowestPopulationDensityState() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
-        String mostPopulationState = censusAnalyser.getMostDensityPopulationState();
-        IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(mostPopulationState,IndiaCensusCSV[].class);
+        String mostPopulationDensityState = censusAnalyser.getMostDensityPopulationState();
+        IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(mostPopulationDensityState,IndiaCensusCSV[].class);
         Assert.assertEquals("Bihar",indiaCensusCSVS[0].state);
         System.out.println(indiaCensusCSVS[0]);
     }

@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c80ee4f-b49f-4760-94c9-81f9af2ef2aa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/censusanalyser/CensusAnalyser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/censusanalyser/CensusAnalyser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/censusanalyser/IndiaCensusCsvDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/censusanalyser/IndiaCensusCsvDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/classes/censusanalyser/CensusAnalyserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/censusanalyser/CensusAnalyserTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/censusanalyser/IndiaCensusCsvDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/censusanalyser/IndiaCensusCsvDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/censusanalyser/IndiaStateCodeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/censusanalyser/IndiaStateCodeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -50,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="222" column="34" selection-start-line="222" selection-start-column="34" selection-end-line="222" selection-end-column="34" />
+            <state relative-caret-position="255">
+              <caret line="221" column="89" selection-start-line="221" selection-start-column="89" selection-end-line="221" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -429,12 +422,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CensusAnalyserTest_givenIndianCensusData_shouldReturnLowPopulationState - 2020.01.10 at 16h 44m 09s.xml">
-      <configuration name="CensusAnalyserTest.givenIndianCensusData_shouldReturnLowPopulationState" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CensusAnalyserTest_givenIndianCensusData_shouldReturnMostPopulationDensityState - 2020.01.10 at 16h 44m 31s.xml">
-      <configuration name="CensusAnalyserTest.givenIndianCensusData_shouldReturnMostPopulationDensityState" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CensusAnalyserTest_givenIndianCensusData_shouldReturnMostPopulationDensityState - 2020.01.10 at 16h 45m 01s.xml">
       <configuration name="CensusAnalyserTest.givenIndianCensusData_shouldReturnMostPopulationDensityState" configurationId="JUnit" />
     </history-entry>
@@ -459,6 +446,12 @@
     <history-entry file="CensusAnalyserTest_givenIndianCensusData_shouldReturnLowestPopulationDensityState - 2020.01.10 at 16h 48m 40s.xml">
       <configuration name="CensusAnalyserTest.givenIndianCensusData_shouldReturnLowestPopulationDensityState" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CensusAnalyserTest_givenIndianCensusData_shouldReturnLowestPopulationDensityState - 2020.01.10 at 16h 48m 58s.xml">
+      <configuration name="CensusAnalyserTest.givenIndianCensusData_shouldReturnLowestPopulationDensityState" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.10 at 16h 49m 03s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -475,13 +468,13 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32899022" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32899022" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32736155" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.32736155" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39739415" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3306189" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3306189" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="11" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -683,8 +676,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="222" column="34" selection-start-line="222" selection-start-column="34" selection-end-line="222" selection-end-column="34" />
+        <state relative-caret-position="255">
+          <caret line="221" column="89" selection-start-line="221" selection-start-column="89" selection-end-line="221" selection-end-column="89" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
