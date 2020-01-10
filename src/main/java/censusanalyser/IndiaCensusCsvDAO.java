@@ -22,4 +22,8 @@ public class IndiaCensusCsvDAO {
     public int getDensityPerSqKm() {
         return densityPerSqKm;
     }
+
+    public int getAreaInSqKm() {
+        return areaInSqKm;
+    }
 }

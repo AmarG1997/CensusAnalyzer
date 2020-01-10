@@ -103,6 +103,13 @@ public class CensusAnalyser {
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
+
+
+    public String getLargestState() {
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getAreaInSqKm).reversed()).collect(Collectors.toList());
+        String sortedData = new Gson().toJson(this.censusCSVList);
+        return sortedData;
+    }
 }
 
 
