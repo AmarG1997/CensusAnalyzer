@@ -92,20 +92,32 @@ public class CensusAnalyser {
         return sortedData;
         }
 
-    public String getMostPopulationState() {
+    public String getMostPopulationState() throws CensusAnalyserException {
+        if (censusCSVList.size()==0 || censusCSVList == null) {
+            throw new CensusAnalyserException("Null pointer Exception",
+                    CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
+        }
         censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getPopulation).reversed()).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
 
-    public String getMostDensityPopulationState() {
+    public String getMostDensityPopulationState() throws CensusAnalyserException {
+        if (censusCSVList.size()==0 || censusCSVList == null) {
+            throw new CensusAnalyserException("Null pointer Exception",
+                    CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
+        }
         censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getDensityPerSqKm).reversed()).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
 
 
-    public String getLargestState() {
+    public String getLargestState() throws CensusAnalyserException {
+        if (censusCSVList.size()==0 || censusCSVList == null) {
+            throw new CensusAnalyserException("Null pointer Exception",
+                    CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
+        }
         censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getAreaInSqKm).reversed()).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
