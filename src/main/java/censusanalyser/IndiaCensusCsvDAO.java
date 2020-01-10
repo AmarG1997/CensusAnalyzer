@@ -15,4 +15,7 @@ public class IndiaCensusCsvDAO {
         return state;
     }
 
+    public int getPopulation() {
+        return population;
+    }
 }

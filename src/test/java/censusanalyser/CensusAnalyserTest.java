@@ -183,4 +183,14 @@ public class CensusAnalyserTest {
         Assert.assertEquals("West Bengal",indiaCensusCSVS[28].state);
 
     }
+
+    @Test
+    public void givenIndianCensusData_shouldReturnMostPopulationData() throws CensusAnalyserException {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+        String mostPopulationState = censusAnalyser.getMostPopulationState();
+        IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(mostPopulationState,IndiaCensusCSV[].class);
+        Assert.assertEquals("Uttar Pradesh",indiaCensusCSVS[0].state);
+        System.out.println(indiaCensusCSVS[0]);
+    }
 }

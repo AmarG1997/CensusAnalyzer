@@ -52,8 +52,6 @@ public class CensusAnalyser {
                 this.censusStateCodeCSVList.add(new IndiaStateCodeDAO(statesCodeIterator.next()));
             }
             return censusStateCodeCSVList.size();
-//            censusStateCodeCSVList = csvBuilder.getCSVFileList(reader, CSVStatesCode.class);
-//            return censusStateCodeCSVList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -93,6 +91,12 @@ public class CensusAnalyser {
         System.out.println(sortedData);
         return sortedData;
         }
+
+    public String getMostPopulationState() {
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getPopulation).reversed()).collect(Collectors.toList());
+        String sortedData = new Gson().toJson(this.censusCSVList);
+        return sortedData;
     }
+}
 
 
