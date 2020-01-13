@@ -26,9 +26,6 @@ public class IndiaCensusCSV {
                 '}';
     }
 
-    public String  getState() {
-        return state;
-    }
 
 
 }

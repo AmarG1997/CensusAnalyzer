@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
-    List<IndiaCensusCsvDAO> censusCSVList = null;
+    List<CensusDAO> censusCSVList = null;
 
     List<IndiaStateCodeDAO> censusStateCodeCSVList = null;
 
-    List<USCensusDAO> censusDAOS = null;
+    List<CensusDAO> censusDAO = null;
 
     public CensusAnalyser() {
-        this.censusCSVList = new ArrayList<IndiaCensusCsvDAO>();
+        this.censusCSVList = new ArrayList<CensusDAO>();
         this.censusStateCodeCSVList = new ArrayList<IndiaStateCodeDAO>();
-        this.censusDAOS = new ArrayList<>();
+        this.censusDAO = new ArrayList<CensusDAO>();
     }
 
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
@@ -31,7 +31,7 @@ public class CensusAnalyser {
             Iterator <IndiaCensusCSV>csvFileIterator = csvBuilder.getCSVFileIterator(reader, IndiaCensusCSV.class);
             while (csvFileIterator.hasNext())
             {
-                this.censusCSVList.add(new IndiaCensusCsvDAO(csvFileIterator.next()));
+                this.censusCSVList.add(new CensusDAO(csvFileIterator.next()));
             }
             return censusCSVList.size();
 
@@ -66,12 +66,12 @@ public class CensusAnalyser {
     public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator <USCensus>USCensusIterator = csvBuilder.getCSVFileIterator(reader, USCensus.class);
+            Iterator<USCensus> USCensusIterator = csvBuilder.getCSVFileIterator(reader, USCensus.class);
             while (USCensusIterator.hasNext())
             {
-                this.censusDAOS.add(new USCensusDAO(USCensusIterator.next()));
+                this.censusDAO.add(new CensusDAO(USCensusIterator.next()));
             }
-            return censusDAOS.size();
+            return censusDAO.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -93,8 +93,7 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Null pointer Exception",
                     CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
         }
-
-        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getStateDAO)).collect(Collectors.toList());
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(CensusDAO::getState)).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         System.out.println(sortedData);
         return sortedData;
@@ -116,7 +115,7 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Null pointer Exception",
                     CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
         }
-        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getPopulation).reversed()).collect(Collectors.toList());
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(CensusDAO::getPopulation).reversed()).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
@@ -126,7 +125,7 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Null pointer Exception",
                     CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
         }
-        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getDensityPerSqKm).reversed()).collect(Collectors.toList());
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(CensusDAO:: getDensityPerSqKm).reversed()).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
@@ -137,7 +136,7 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Null pointer Exception",
                     CensusAnalyserException.ExceptionType.NULL_POINTER_EXCEPTION);
         }
-        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(IndiaCensusCsvDAO :: getAreaInSqKm).reversed()).collect(Collectors.toList());
+        censusCSVList= censusCSVList.stream().sorted(Comparator.comparing(CensusDAO:: getAreaInSqKm).reversed()).collect(Collectors.toList());
         String sortedData = new Gson().toJson(this.censusCSVList);
         return sortedData;
     }
