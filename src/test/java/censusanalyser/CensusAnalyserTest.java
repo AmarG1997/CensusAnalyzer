@@ -17,13 +17,16 @@ public class CensusAnalyserTest {
     private static final String WRONG_STATECODE_CSV_FILE_TYPE="./src/main/resources/IndiaStateCensusData.txt";
     private static final String STATECODE_CSV_FILE_WITH_WRONG_DELIMETER="/home/admin1/Downloads/CensusAnalyser/CensusAnalyser/src/test/resources/Delimeter.csv";
     private static final String USV_CENSUS_FILE_PATH="/home/admin1/Downloads/CensusAnalyser/CensusAnalyser/src/test/resources/USCensusData (1).csv";
+
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals(29,numOfRecords);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
