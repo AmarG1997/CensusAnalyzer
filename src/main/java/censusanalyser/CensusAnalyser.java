@@ -49,12 +49,9 @@ public class CensusAnalyser {
     public int loadIndiaStateCodeData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator <CSVStatesCode>statesCodeIterator = csvBuilder.getCSVFileIterator(reader, CSVStatesCode.class);
-            while (statesCodeIterator.hasNext())
-            {
-                this.censusStateCodeCSVList.add(new IndiaStateCodeDAO(statesCodeIterator.next()));
-            }
-            return censusStateCodeCSVList.size();
+            List<CSVStatesCode> csvStatesCodeList = csvBuilder.getCSVFileList(reader,CSVStatesCode.class);
+            csvStatesCodeList.stream().filter(stateData -> censusStateCodeCSVList.add(new IndiaStateCodeDAO(stateData))).collect(Collectors.toList());
+            return csvStatesCodeList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
