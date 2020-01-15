@@ -1,13 +1,7 @@
 package censusanalyser;
 
 import com.google.gson.Gson;
-import csvBuilder.CSVBuilderFactory;
-import csvBuilder.CsvBuilderException;
-import csvBuilder.ICSVBuilder;
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -21,33 +15,32 @@ public class CensusAnalyser {
         this.censusStateCodeCSVList = new ArrayList<>();
     }
 
-    public int loadIndiaCensusData(String... csvFilePath) throws CensusAnalyserException {
+    public enum Country{
+        INDIA,US
+    }
+
+    public int loadCensusData(Country country,String... csvFilePath) throws CensusAnalyserException {
+        if (country.equals(Country.INDIA)){
+            return this.loadIndiaCensusData(IndiaCensusCSV.class,csvFilePath);
+        }
+        else if (country.equals(Country.US)){
+            return this.loadUSCensusData(USCensus.class,csvFilePath[0]);
+        }
+        else {
+            throw new CensusAnalyserException("Invalid Country",CensusAnalyserException.ExceptionType.NO_SUCH_COUNTRY);
+        }
+    }
+
+    public int loadIndiaCensusData(Class csvClass , String... csvFilePath) throws CensusAnalyserException {
         censusCSVList= new CensusLoader().loadCensusData(IndiaCensusCSV.class,csvFilePath);
         return censusCSVList.size();
     }
-    public int loadUSCensusData(String... csvFilePath) throws CensusAnalyserException {
+    public int loadUSCensusData(Class csvClass , String... csvFilePath) throws CensusAnalyserException {
         censusCSVList=new CensusLoader().loadCensusData(IndiaCensusCSV.class,csvFilePath);
         return censusCSVList.size();
 
     }
 
-
-//    public int loadIndiaStateCodeData(String csvFilePath) throws CensusAnalyserException {
-//        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-//            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-//            List<CSVStatesCode> csvStatesCodeList = csvBuilder.getCSVFileList(reader,CSVStatesCode.class);
-//            csvStatesCodeList.stream().filter(stateData -> censusStateCodeCSVList.add(new IndiaStateCodeDAO(stateData))).collect(Collectors.toList());
-//            return csvStatesCodeList.size();
-//        } catch (IOException e) {
-//            throw new CensusAnalyserException(e.getMessage(),
-//                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-//        } catch (RuntimeException e) {
-//            throw new CensusAnalyserException(e.getMessage(),
-//                    CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
-//        } catch (CsvBuilderException e) {
-//            throw new CensusAnalyserException(e.getMessage(), e.type.name());
-//        }
-//    }
 
     private <E> int getCount(Iterator<E> censusCSVIterator) {
         Iterable<E> csvIterable = () -> censusCSVIterator;
