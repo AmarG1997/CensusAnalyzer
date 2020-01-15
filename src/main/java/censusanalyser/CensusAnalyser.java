@@ -15,32 +15,14 @@ public class CensusAnalyser {
         this.censusStateCodeCSVList = new ArrayList<>();
     }
 
-    public enum Country{
-        INDIA,US
-    }
+    public enum Country{ INDIA,US}
+    Map<String ,CensusDAO> censusStateMap = null;
+
 
     public int loadCensusData(Country country,String... csvFilePath) throws CensusAnalyserException {
-        if (country.equals(Country.INDIA)){
-            return this.loadIndiaCensusData(IndiaCensusCSV.class,csvFilePath);
-        }
-        else if (country.equals(Country.US)){
-            return this.loadUSCensusData(USCensus.class,csvFilePath[0]);
-        }
-        else {
-            throw new CensusAnalyserException("Invalid Country",CensusAnalyserException.ExceptionType.NO_SUCH_COUNTRY);
-        }
+        censusStateMap = CensusAdapterFactory.getCensusData(country,csvFilePath);
+        return censusStateMap.size();
     }
-
-    public int loadIndiaCensusData(Class csvClass , String... csvFilePath) throws CensusAnalyserException {
-        censusCSVList= new CensusLoader().loadCensusData(IndiaCensusCSV.class,csvFilePath);
-        return censusCSVList.size();
-    }
-    public int loadUSCensusData(Class csvClass , String... csvFilePath) throws CensusAnalyserException {
-        censusCSVList=new CensusLoader().loadCensusData(IndiaCensusCSV.class,csvFilePath);
-        return censusCSVList.size();
-
-    }
-
 
     private <E> int getCount(Iterator<E> censusCSVIterator) {
         Iterable<E> csvIterable = () -> censusCSVIterator;

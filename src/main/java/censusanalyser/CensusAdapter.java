@@ -8,14 +8,16 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.StreamSupport;
 
-public class CensusLoader {
+public abstract class CensusAdapter {
 
-    List<CensusDAO> censusCSVList = new ArrayList<>();
     Map<String,CensusDAO>censusStateMap = new HashMap<>();
+
+    public  abstract <E> Map< String, CensusDAO> loadCensusData(String... csvFilePath) throws CensusAnalyserException ;
 
     public  <E> Map< String, CensusDAO> loadCensusData(Class<E> censusCSVClass , String... csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath[0]));) {
@@ -31,10 +33,7 @@ public class CensusLoader {
                         .map(USCensus.class::cast)
                         .forEach(censusCSV -> censusStateMap.put(censusCSV.State, new CensusDAO(censusCSV)));
             }
-              if(csvFilePath.length == 1)
-                  return censusStateMap;
-              this.loadIndiaStateCodeData(csvFilePath[1]);
-              return censusStateMap;
+                return censusStateMap;
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -45,24 +44,5 @@ public class CensusLoader {
             throw new CensusAnalyserException(e.getMessage(), e.type.name());
         }
 
-    }
-
-    public Map<String, CensusDAO> loadIndiaStateCodeData(String csvFilePath) throws CensusAnalyserException {
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            List<CSVStatesCode> csvStatesCodeList = csvBuilder.getCSVFileList(reader,CSVStatesCode.class);
-            StreamSupport.stream(csvStatesCodeList.spliterator(),false)
-                    .filter(csvStates -> censusStateMap.get(csvStates.StateName)!=null)
-                    .forEach(csvStates -> censusStateMap.get(csvStates.StateName).State_Id = csvStates.StateCode);
-            return censusStateMap;
-        } catch (IOException e) {
-            throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-        } catch (RuntimeException e) {
-            throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
-        } catch (CsvBuilderException e) {
-            throw new CensusAnalyserException(e.getMessage(), e.type.name());
-        }
     }
 }
