@@ -1,15 +1,15 @@
 package censusanalyser;
 
 public class CensusDAO {
-    private int areaInSqKm;
-    private String state;
-    private int densityPerSqKm;
-    private int population;
-    private String State_Id;
-    private int Housing_units;
-    private double Water_area;
-    private double Land_area;
-    private double Housing_Density;
+    public int areaInSqKm;
+    public String state;
+    public int densityPerSqKm;
+    public int population;
+    public String State_Id;
+    public double Water_area;
+    public double Land_area;
+    public double Housing_Density;
+    public int Housing_units;
 
     public CensusDAO(IndiaCensusCSV indiaCensusCSV) {
         state = indiaCensusCSV.state;
@@ -44,5 +44,9 @@ public class CensusDAO {
 
     public int getPopulation() {
         return population;
+    }
+
+    public String getState_Id() {
+        return State_Id;
     }
 }

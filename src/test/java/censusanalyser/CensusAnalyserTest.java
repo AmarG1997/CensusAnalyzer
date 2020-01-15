@@ -81,8 +81,8 @@ public class CensusAnalyserTest {
     public void givenIndianStateCodeCSVFileReturnsCorrectRecords() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            int numOfRecords = censusAnalyser.loadIndiaStateCodeData(INDIA_STATE_CODE);
-            Assert.assertEquals(37, numOfRecords);
+            int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH, INDIA_STATE_CODE);
+            Assert.assertEquals(29, numOfRecords);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
@@ -159,10 +159,10 @@ public class CensusAnalyserTest {
     @Test
     public void givenIndiaStateCodeFile_sortedList_atFirstPosition_isSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
-        censusAnalyser.loadIndiaStateCodeData(INDIA_STATE_CODE);
+        censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH,INDIA_STATE_CODE);
         String list = censusAnalyser.getSortIndiaStateCode();
-        CSVStatesCode[] csvStatesCodes = new Gson().fromJson(list,CSVStatesCode[].class);
-        Assert.assertEquals("Andhra Pradesh New",csvStatesCodes[0].StateName);
+        CensusDAO[] csvStatesCodes = new Gson().fromJson(list,CensusDAO[].class);
+        Assert.assertEquals("Andhra Pradesh",csvStatesCodes[0].state);
 
 
     }
@@ -170,10 +170,10 @@ public class CensusAnalyserTest {
     @Test
     public void givenIndiaStateCodeFile_sortedList_atLastPosition_isSortedData() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
-        censusAnalyser.loadIndiaStateCodeData(INDIA_STATE_CODE);
+        censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH,INDIA_STATE_CODE);
         String list = censusAnalyser.getSortIndiaStateCode();
-        CSVStatesCode[] csvStatesCodes = new Gson().fromJson(list,CSVStatesCode[].class);
-        Assert.assertEquals("West Bengal",csvStatesCodes[36].StateName);
+        CensusDAO[] csvStatesCodes = new Gson().fromJson(list,CensusDAO[].class);
+        Assert.assertEquals("West Bengal",csvStatesCodes[28].state);
     }
 
     @Test
