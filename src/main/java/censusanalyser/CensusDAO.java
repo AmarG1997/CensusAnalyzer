@@ -19,8 +19,10 @@ public class CensusDAO {
     }
 
 
+
     public CensusDAO(USCensus usCensus) {
         Housing_units=usCensus.Housing_units;
+        Housing_Density=usCensus.Housing_Density;
         Land_area=usCensus.Land_area;
         population=usCensus.Population;
         densityPerSqKm= (int) usCensus.Population_Density;
@@ -48,5 +50,11 @@ public class CensusDAO {
 
     public String getState_Id() {
         return State_Id;
+    }
+
+    public Object getCensusDTO(CensusAnalyser.Country country){
+        if (country.equals(CensusAnalyser.Country.US))
+            return new USCensus(state,population,densityPerSqKm,State_Id,areaInSqKm);
+        return new IndiaCensusCSV(state,population,densityPerSqKm,areaInSqKm);
     }
 }

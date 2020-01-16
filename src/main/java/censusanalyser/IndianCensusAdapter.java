@@ -23,35 +23,6 @@ public class IndianCensusAdapter extends CensusAdapter {
         return censusStateMap;
     }
 
-//    public <E> Map< String, CensusDAO> loadCensusData(Class<E> censusCSVClass , String... csvFilePath) throws CensusAnalyserException {
-//        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath[0]));) {
-//            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-//            List<E> censusList = csvBuilder.getCSVFileList(reader,censusCSVClass);
-//            if (censusCSVClass.getName().equals("censusanalyser.IndiaCensusCSV")){
-//                StreamSupport.stream(censusList.spliterator(),false)
-//                        .map(IndiaCensusCSV.class::cast)
-//                        .forEach(censusCSV -> censusStateMap.put(censusCSV.state,new CensusDAO(censusCSV)));
-//            }
-//            else if (censusCSVClass.getName().equals("censusanalyser.USCensus")) {
-//                StreamSupport.stream(censusList.spliterator(), false)
-//                        .map(USCensus.class::cast)
-//                        .forEach(censusCSV -> censusStateMap.put(censusCSV.State, new CensusDAO(censusCSV)));
-//            }
-//              if(csvFilePath.length == 1)
-//                  return censusStateMap;
-//              this.loadIndiaStateCodeData(csvFilePath[1]);
-//              return censusStateMap;
-//        } catch (IOException e) {
-//            throw new CensusAnalyserException(e.getMessage(),
-//                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-//        } catch (RuntimeException e) {
-//            throw new CensusAnalyserException(e.getMessage(),
-//                    CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
-//        } catch (CsvBuilderException e) {
-//            throw new CensusAnalyserException(e.getMessage(), e.type.name());
-//        }
-//
-//    }
 
     public Map<String, CensusDAO> loadIndiaStateCodeData(Map<String,CensusDAO>censusStateMap,String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {

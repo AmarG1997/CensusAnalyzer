@@ -20,6 +20,10 @@ public class CSVStatesCode {
         return SrNo;
     }
 
+
+    public CSVStatesCode() {
+    }
+
     public void setSrNo(int srNo) {
         SrNo = srNo;
     }
